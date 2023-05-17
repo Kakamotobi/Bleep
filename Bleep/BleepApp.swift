@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct BleepApp: App {
+    @StateObject private var modelData = ModelData()
+    
     var body: some Scene {
-        WindowGroup {
+        MenuBarExtra("Bleep", systemImage: "timer") {
             ContentView()
-        }
+                .environmentObject(modelData)
+        }.menuBarExtraStyle(.window)
     }
 }

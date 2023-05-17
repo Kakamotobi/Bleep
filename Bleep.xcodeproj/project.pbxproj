@@ -14,6 +14,11 @@
 		83A1D01A2A14E1E300A49804 /* BleepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D0192A14E1E300A49804 /* BleepTests.swift */; };
 		83A1D0242A14E1E300A49804 /* BleepUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D0232A14E1E300A49804 /* BleepUITests.swift */; };
 		83A1D0262A14E1E300A49804 /* BleepUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D0252A14E1E300A49804 /* BleepUITestsLaunchTests.swift */; };
+		83A1D0332A14E9BA00A49804 /* BleepsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D0322A14E9BA00A49804 /* BleepsListView.swift */; };
+		83A1D0382A150B6F00A49804 /* Bleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D0372A150B6F00A49804 /* Bleep.swift */; };
+		83A1D03D2A15131600A49804 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D03C2A15131600A49804 /* ModelData.swift */; };
+		83A1D0402A15183400A49804 /* BleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D03F2A15183400A49804 /* BleepView.swift */; };
+		83A1D0422A1525DB00A49804 /* BleepFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D0412A1525DB00A49804 /* BleepFormView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +50,11 @@
 		83A1D01F2A14E1E300A49804 /* BleepUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BleepUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A1D0232A14E1E300A49804 /* BleepUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleepUITests.swift; sourceTree = "<group>"; };
 		83A1D0252A14E1E300A49804 /* BleepUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleepUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		83A1D0322A14E9BA00A49804 /* BleepsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleepsListView.swift; sourceTree = "<group>"; };
+		83A1D0372A150B6F00A49804 /* Bleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bleep.swift; sourceTree = "<group>"; };
+		83A1D03C2A15131600A49804 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		83A1D03F2A15183400A49804 /* BleepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleepView.swift; sourceTree = "<group>"; };
+		83A1D0412A1525DB00A49804 /* BleepFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleepFormView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				83A1D0072A14E1E200A49804 /* BleepApp.swift */,
-				83A1D0092A14E1E200A49804 /* ContentView.swift */,
+				83A1D03E2A1517FF00A49804 /* Views */,
+				83A1D0362A150B6100A49804 /* Model */,
 				83A1D00B2A14E1E300A49804 /* Assets.xcassets */,
 				83A1D0102A14E1E300A49804 /* Bleep.entitlements */,
 				83A1D00D2A14E1E300A49804 /* Preview Content */,
@@ -127,6 +138,26 @@
 				83A1D0252A14E1E300A49804 /* BleepUITestsLaunchTests.swift */,
 			);
 			path = BleepUITests;
+			sourceTree = "<group>";
+		};
+		83A1D0362A150B6100A49804 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				83A1D0372A150B6F00A49804 /* Bleep.swift */,
+				83A1D03C2A15131600A49804 /* ModelData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		83A1D03E2A1517FF00A49804 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				83A1D0092A14E1E200A49804 /* ContentView.swift */,
+				83A1D0322A14E9BA00A49804 /* BleepsListView.swift */,
+				83A1D03F2A15183400A49804 /* BleepView.swift */,
+				83A1D0412A1525DB00A49804 /* BleepFormView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +290,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83A1D0382A150B6F00A49804 /* Bleep.swift in Sources */,
+				83A1D0332A14E9BA00A49804 /* BleepsListView.swift in Sources */,
 				83A1D00A2A14E1E200A49804 /* ContentView.swift in Sources */,
+				83A1D0422A1525DB00A49804 /* BleepFormView.swift in Sources */,
+				83A1D0402A15183400A49804 /* BleepView.swift in Sources */,
 				83A1D0082A14E1E200A49804 /* BleepApp.swift in Sources */,
+				83A1D03D2A15131600A49804 /* ModelData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +458,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Bleep/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -447,6 +484,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Bleep/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
