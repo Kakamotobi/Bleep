@@ -11,37 +11,36 @@ class Bleep: Identifiable, ObservableObject {
     @Published var isActive: Bool = true {
         didSet {
             if isActive {
-                 startInterval()
+                startBleep()
             } else {
-                 endInterval()
+                stopBleep()
             }
         }
     }
     @Published var content: String
     @Published var intervalInSeconds: Double
-    var prevIntervalInSeconds: Double = 0
-    var timer: Timer!
-    var id = UUID()
+    var id: UUID = UUID()
+    var notificationId: String!
     
     init(content: String, intervalInSeconds: Double) {
         self.content = content
         self.intervalInSeconds = intervalInSeconds
         
-        startInterval()
+        startBleep()
     }
     
-    func startInterval() {
-        if self.timer != nil {
-            endInterval()
+    func startBleep() {
+        if notificationId != nil {
+            stopBleep()
         }
         
-        self.timer = Timer.scheduledTimer(withTimeInterval: self.intervalInSeconds, repeats: true, block: { timer in
-            self.sendNotification()
-        })
+        notificationId = UUID().uuidString
+        print("\(content) - \(notificationId!)")
+        SystemService.generateNotification(content: content, timeInterval: intervalInSeconds, repeats: true, notificationId: notificationId)
     }
     
-    func endInterval() {
-        self.timer.invalidate()
+    func stopBleep() {
+        SystemService.removeNotificationRepeat(id: notificationId)
     }
     
     func activate() {
@@ -50,9 +49,5 @@ class Bleep: Identifiable, ObservableObject {
     
     func deactivate() {
         self.isActive = false
-    }
-    
-    func sendNotification() {
-        print("\(self.content)!")
     }
 }
