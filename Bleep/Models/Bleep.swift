@@ -8,16 +8,26 @@
 import Foundation
 
 class Bleep: Identifiable, ObservableObject {
-    @Published var isActive: Bool = true
+    @Published var isActive: Bool = true {
+        didSet {
+            if isActive {
+                // startInterval()
+                print("activate bleep!")
+            } else {
+                // endInterval()
+                print("deactivate bleep!")
+            }
+        }
+    }
     @Published var content: String
-    @Published var interval: Double
-    var prevInterval: Double = 0
+    @Published var intervalInSeconds: Double
+    var prevIntervalInSeconds: Double = 0
     var timer: Timer!
     var id = UUID()
     
-    init(content: String, interval: Double) {
+    init(content: String, intervalInSeconds: Double) {
         self.content = content
-        self.interval = interval
+        self.intervalInSeconds = intervalInSeconds
         
 //        startInterval()
     }
@@ -27,14 +37,14 @@ class Bleep: Identifiable, ObservableObject {
             endInterval()
         }
         
-        self.timer = Timer.scheduledTimer(withTimeInterval: self.interval, repeats: true, block: { timer in
-            print("\(self.content)!")
+        self.timer = Timer.scheduledTimer(withTimeInterval: self.intervalInSeconds, repeats: true, block: { timer in
             self.sendNotification()
         })
     }
     
     func endInterval() {
         self.timer.invalidate()
+        print("invalidated timer!")
     }
     
     func activate() {
@@ -45,5 +55,7 @@ class Bleep: Identifiable, ObservableObject {
         self.isActive = false
     }
     
-    func sendNotification() {}
+    func sendNotification() {
+        print("\(self.content)!")
+    }
 }
