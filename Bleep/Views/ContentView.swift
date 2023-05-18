@@ -34,14 +34,10 @@ struct ContentView: View {
             Divider()
             
             Button("Quit Bleep") {
-                quitApp()
+                SystemService.quitApp()
             }
         }
         .padding()
-    }
-    
-    func quitApp() {
-        NSApplication.shared.terminate(nil)
     }
 }
 
