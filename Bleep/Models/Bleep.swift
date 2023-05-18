@@ -11,11 +11,9 @@ class Bleep: Identifiable, ObservableObject {
     @Published var isActive: Bool = true {
         didSet {
             if isActive {
-                // startInterval()
-                print("activate bleep!")
+                 startInterval()
             } else {
-                // endInterval()
-                print("deactivate bleep!")
+                 endInterval()
             }
         }
     }
@@ -29,7 +27,7 @@ class Bleep: Identifiable, ObservableObject {
         self.content = content
         self.intervalInSeconds = intervalInSeconds
         
-//        startInterval()
+        startInterval()
     }
     
     func startInterval() {
@@ -44,7 +42,6 @@ class Bleep: Identifiable, ObservableObject {
     
     func endInterval() {
         self.timer.invalidate()
-        print("invalidated timer!")
     }
     
     func activate() {
