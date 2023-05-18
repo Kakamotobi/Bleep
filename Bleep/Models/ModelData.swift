@@ -9,14 +9,26 @@ import Foundation
 
 final class ModelData: ObservableObject {
     @Published var bleeps: [Bleep] = [
-        Bleep(content: "fix posture", interval: 5),
-        Bleep(content: "stand up", interval: 60),
-        Bleep(content: "walk around", interval: 500)
+        Bleep(content: "fix posture", intervalInSeconds: 60),
+        Bleep(content: "eye drops", intervalInSeconds: 300),
+        Bleep(content: "stand up", intervalInSeconds: 3600),
+        Bleep(content: "take a walk", intervalInSeconds: 7200)
     ]
-    @Published var isAllActive: Bool = true
+    @Published var isAllActive: Bool = true {
+        didSet {
+            if isAllActive {
+                activateAll()
+            } else {
+                deactivateAll()
+            }
+        }
+    }
+    var intervalOptionsInMins: [Double] = [
+        1, 2, 5, 10, 15, 30, 60, 120, 180, 300
+    ]
     
-    func addNewBleep(content: String, interval: Double) {
-        let newBleep = Bleep(content: content, interval: interval / 60)
+    func addNewBleep(content: String, intervalInSeconds: Double) {
+        let newBleep = Bleep(content: content, intervalInSeconds: intervalInSeconds / 60)
         bleeps.append(newBleep)
         sortBleeps()
     }
@@ -29,7 +41,7 @@ final class ModelData: ObservableObject {
     
     func sortBleeps() {
         bleeps.sort {
-            $0.interval < $1.interval
+            $0.intervalInSeconds < $1.intervalInSeconds
         }
     }
     
