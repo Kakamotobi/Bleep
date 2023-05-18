@@ -23,8 +23,8 @@ final class ModelData: ObservableObject {
             }
         }
     }
-    var intervalOptionsInMins: [Double] = [
-        1, 2, 5, 10, 15, 30, 60, 120, 180, 300
+    var intervalOptionsInSecs: [Double] = [
+        60, 120, 300, 600, 900, 1800, 3600, 7200, 10800, 18000
     ]
     
     func addNewBleep(content: String, intervalInSeconds: Double) {

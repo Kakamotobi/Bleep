@@ -8,8 +8,8 @@
 import Foundation
 
 func convertSecsToMinsHours(_ secs: Double) -> (Double,Double) {
-    let mins = (secs / 60).rounded()
-    let hours = (mins / 60).rounded()
+    let mins = (secs / 60).rounded(.towardZero)
+    let hours = (mins / 60).rounded(.towardZero)
     
     return (hours, mins)
 }
