@@ -11,7 +11,7 @@ struct ContentView: View {
     @EnvironmentObject var modelData: ModelData
     
     var body: some View {
-        ScrollView {
+        VStack {
             HStack {
                 Text("Bleep")
                     .bold()
@@ -25,18 +25,16 @@ struct ContentView: View {
             
             Divider()
             
-            VStack {
-                BleepsListView()
-                
-                Divider()
-                
-                BleepFormView()
-                
-                Divider()
-                
-                Button("Quit Bleep") {
-                    quitApp()
-                }
+            BleepsListView()
+            
+            Divider()
+            
+            BleepFormView()
+            
+            Divider()
+            
+            Button("Quit Bleep") {
+                quitApp()
             }
         }
         .padding()
