@@ -46,15 +46,9 @@ struct SystemService {
     
     static func requestNotificationPermission() {
         UNCenter.getNotificationSettings { settings in
-            var requiredNotificationPermission: Bool!
+            let requiredNotificationPermission: Bool = settings.authorizationStatus == .denied || settings.authorizationStatus == .notDetermined
             
-            if settings.authorizationStatus == .denied || settings.authorizationStatus == .notDetermined {
-                requiredNotificationPermission = true
-            } else {
-                requiredNotificationPermission = false
-            }
-            
-            UNCenter.requestAuthorization(options: [.alert, .sound, .provisional]) { granted, error in
+            UNCenter.requestAuthorization(options: [.alert, .sound]) { granted, error in
                 if let error = error {
                     print(error.localizedDescription)
                 }
