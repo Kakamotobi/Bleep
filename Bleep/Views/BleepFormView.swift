@@ -10,34 +10,29 @@ import SwiftUI
 struct BleepFormView: View {
     @EnvironmentObject var modelData: ModelData
     @State private var newBleepContent: String = ""
-    @State private var newBleepInterval: Double = 0
+    @State private var newBleepInterval: Double = 60
     
     var body: some View {
         Form {
             VStack{
-                Section {
-                    TextField("", text: $newBleepContent, prompt: Text("Add new bleep"))
-                        .textFieldStyle(.roundedBorder)
-                }
-                
                 HStack {
-                    Menu("Interval") {
+                    TextField("", text: $newBleepContent, prompt: Text("Add new bleep..."))
+                        .textFieldStyle(.plain)
+                        .padding(.leading, -5)
+                        .background(Color.clear)
+                    
+                    Picker("", selection: $newBleepInterval) {
                         ForEach(modelData.intervalOptionsInSecs, id: \.self) { interval in
                             let (hours, mins) = convertSecsToMinsHours(interval)
-                            let buttonText = """
+                            let optionText = """
                             \(hours >= 1
                                 ? "\(hours.formatted()) hour\(hours > 1 ? "s" : "")"
                                 : "\(mins.formatted()) min\(mins > 1 ? "s" : "")")
                             """
                             
-                            Button("\(buttonText)", action: {
-                                self.intervalInputHandler(mins: interval)
-                            })
-                                .onTapGesture {
-                                    newBleepInterval = interval
-                                }
+                            Text(optionText).tag(interval)
                         }
-                    }
+                    }.pickerStyle(.menu).frame(width: 90).padding(.leading, -5)
                     
                     Button("Add") {
                         submitHandler(content: newBleepContent, intervalInSeconds: newBleepInterval)
@@ -48,6 +43,7 @@ struct BleepFormView: View {
         .onSubmit {
             submitHandler(content: newBleepContent, intervalInSeconds: newBleepInterval)
         }
+        .padding(.vertical, 2)
     }
     
     func intervalInputHandler(mins: Double) {
@@ -59,11 +55,11 @@ struct BleepFormView: View {
             return
         }
         
-        // Add new bleep
+        
         modelData.addNewBleep(content: content, intervalInSeconds: intervalInSeconds)
-        // Reset values
+        
         newBleepContent = ""
-        newBleepInterval = 0
+        newBleepInterval = 60
     }
 }
 
