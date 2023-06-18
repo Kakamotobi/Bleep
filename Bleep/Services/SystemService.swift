@@ -31,31 +31,25 @@ struct SystemService {
     
     static func removeNotificationRepeat(id: String) {
         UNCenter.removePendingNotificationRequests(withIdentifiers: [id])
-        print("removed notification!")
     }
     
-    static func isNotificationPermissionGranted() -> Bool {
-        var isGranted: Bool = false
+    static func isNotificationPermissionGranted(completionHandler: @escaping (Bool) -> Void) {
         UNCenter.getNotificationSettings { (settings) in
-            if settings.authorizationStatus == .authorized {
-                isGranted = true
-            }
+            let isGranted = settings.authorizationStatus == .authorized
+            completionHandler(isGranted)
         }
-        return isGranted
     }
     
     static func requestNotificationPermission() {
         UNCenter.getNotificationSettings { settings in
-            let requiredNotificationPermission: Bool = settings.authorizationStatus == .denied || settings.authorizationStatus == .notDetermined
-            
-            UNCenter.requestAuthorization(options: [.alert, .sound]) { granted, error in
+            UNCenter.requestAuthorization(options: [.alert, .sound, .provisional]) { granted, error in
                 if let error = error {
                     print(error.localizedDescription)
                 }
                 
-                if requiredNotificationPermission && granted {
+                if granted {
                     generateNotification(content: "You will now receive bleeps!", timeInterval: 1, repeats: false, notificationId: UUID().uuidString)
-                } else if !granted {
+                } else {
                     generateNotification(content: "You need to allow notifications to receive bleeps!", timeInterval: 1, repeats: false, notificationId: UUID().uuidString)
                 }
             }
@@ -63,6 +57,7 @@ struct SystemService {
     }
 
     static func quitApp() {
+        UNCenter.removeAllPendingNotificationRequests()
         NSApplication.shared.terminate(nil)
     }
 }

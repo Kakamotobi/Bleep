@@ -22,8 +22,10 @@ struct BleepApp: App {
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     @MainActor func applicationDidFinishLaunching(_ notification: Notification) {
-        if SystemService.isNotificationPermissionGranted() == false {
-            SystemService.requestNotificationPermission()
+        SystemService.isNotificationPermissionGranted { isGranted in
+            if !isGranted {
+                SystemService.requestNotificationPermission()
+            }
         }
     }
     
