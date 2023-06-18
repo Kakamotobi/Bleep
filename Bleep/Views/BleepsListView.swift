@@ -11,11 +11,13 @@ struct BleepsListView: View {
     @EnvironmentObject var modelData: ModelData
     
     var body: some View {
-        List {
-            ForEach(modelData.bleeps) {bleep in
-                BleepView(bleep: bleep)
+        ScrollView(showsIndicators: false) {
+            VStack {
+                ForEach(modelData.bleeps) {bleep in
+                    BleepView(bleep: bleep)
+                }
             }
-        }
+        }.frame(maxHeight: 155)
     }
 }
 
