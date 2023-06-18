@@ -30,17 +30,16 @@ class Bleep: Identifiable, ObservableObject {
     }
     
     func startBleep() {
-        if notificationId != nil {
+        if self.notificationId != nil {
             stopBleep()
         }
         
-        notificationId = UUID().uuidString
-        print("\(content) - \(notificationId!)")
-        SystemService.generateNotification(content: content, timeInterval: intervalInSeconds, repeats: true, notificationId: notificationId)
+        self.notificationId = UUID().uuidString
+        SystemService.generateNotification(content: content, timeInterval: intervalInSeconds, repeats: true, notificationId: self.notificationId)
     }
     
     func stopBleep() {
-        SystemService.removeNotificationRepeat(id: notificationId)
+        SystemService.removeNotificationRepeat(id: self.notificationId)
     }
     
     func activate() {
