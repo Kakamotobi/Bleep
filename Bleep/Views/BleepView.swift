@@ -19,7 +19,7 @@ struct BleepView: View {
         """
         
         HStack{
-            Text("\(bleepText)")
+            Text("\(bleepText)").padding(.leading, -12)
             Spacer()
             Toggle("", isOn: $bleep.isActive)
                 .toggleStyle(.switch)
