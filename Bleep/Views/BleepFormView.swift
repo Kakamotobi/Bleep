@@ -11,53 +11,58 @@ struct BleepFormView: View {
     @EnvironmentObject var modelData: ModelData
     @State private var newBleepContent: String = ""
     @State private var newBleepInterval: Double = 60
-    
+    @FocusState private var isFocused: Bool
+
     var body: some View {
         Form {
-            VStack{
-                HStack {
-                    TextField("", text: $newBleepContent, prompt: Text("Add new bleep..."))
-                        .textFieldStyle(.plain)
-                        .padding(.leading, -5)
-                        .background(Color.clear)
-                    
-                    Picker("", selection: $newBleepInterval) {
-                        ForEach(modelData.intervalOptionsInSecs, id: \.self) { interval in
-                            let (hours, mins) = convertSecsToMinsHours(interval)
-                            let optionText = """
+            HStack {
+                TextField("", text: $newBleepContent, prompt: Text("Add new bleep..."))
+                    .focused($isFocused)
+                    .padding(.leading, -5)
+                    .textFieldStyle(.plain)
+                    .background(Color.clear)
+
+                Picker("", selection: $newBleepInterval) {
+                    ForEach(modelData.intervalOptionsInSecs, id: \.self) { interval in
+                        let (hours, mins) = convertSecsToMinsHours(interval)
+                        let optionText = """
                             \(hours >= 1
-                                ? "\(hours.formatted()) hour\(hours > 1 ? "s" : "")"
-                                : "\(mins.formatted()) min\(mins > 1 ? "s" : "")")
-                            """
-                            
-                            Text(optionText).tag(interval)
-                        }
-                    }.pickerStyle(.menu).frame(width: 90).padding(.leading, -5)
-                    
-                    Button("Add") {
-                        submitHandler(content: newBleepContent, intervalInSeconds: newBleepInterval)
+                            ? "\(hours.formatted()) hour\(hours > 1 ? "s" : "")"
+                            : "\(mins.formatted()) min\(mins > 1 ? "s" : "")")
+                        """
+
+                        Text(optionText).tag(interval)
                     }
+                }
+                    .frame(width: 90)
+                    .padding(.leading, -5)
+                    .pickerStyle(.menu)
+
+                Button("Add") {
+                    submitHandler(content: newBleepContent, intervalInSeconds: newBleepInterval)
+                    isFocused = false
                 }
             }
         }
         .onSubmit {
             submitHandler(content: newBleepContent, intervalInSeconds: newBleepInterval)
+            isFocused = false
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                isFocused = false
+            }
         }
         .padding(.vertical, 2)
     }
-    
-    func intervalInputHandler(mins: Double) {
-        newBleepInterval = mins
-    }
-    
+
     func submitHandler(content: String, intervalInSeconds: Double) {
         if content.isEmpty || intervalInSeconds == 0 {
             return
         }
-        
-        
+
         modelData.addNewBleep(content: content, intervalInSeconds: intervalInSeconds)
-        
+
         newBleepContent = ""
         newBleepInterval = 60
     }
