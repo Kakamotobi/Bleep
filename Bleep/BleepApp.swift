@@ -16,7 +16,8 @@ struct BleepApp: App {
         MenuBarExtra("Bleep", systemImage: "timer") {
             ContentView()
                 .environmentObject(modelData)
-        }.menuBarExtraStyle(.window)
+        }
+        .menuBarExtraStyle(.window)
     }
 }
 

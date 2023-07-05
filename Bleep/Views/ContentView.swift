@@ -25,7 +25,7 @@ struct ContentView: View {
             
             Divider()
             
-            BleepsListView()
+            BleepsContainerView()
             
             Divider()
             

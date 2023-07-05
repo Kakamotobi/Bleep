@@ -24,14 +24,7 @@ struct BleepFormView: View {
 
                 Picker("", selection: $newBleepInterval) {
                     ForEach(modelData.intervalOptionsInSecs, id: \.self) { interval in
-                        let (hours, mins) = convertSecsToMinsHours(interval)
-                        let optionText = """
-                            \(hours >= 1
-                            ? "\(hours.formatted()) hour\(hours > 1 ? "s" : "")"
-                            : "\(mins.formatted()) min\(mins > 1 ? "s" : "")")
-                        """
-
-                        Text(optionText).tag(interval)
+                        Text(correspondingTimeUnit(interval)).tag(interval)
                     }
                 }
                     .frame(width: 90)

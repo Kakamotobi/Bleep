@@ -8,18 +8,11 @@
 import SwiftUI
 
 struct BleepView: View {
-    @ObservedObject var bleep: Bleep
+    @ObservedObject var bleep: Bleep // change to @Binding to allow editting the bleep
     
     var body: some View {
-        let (hours, mins) = convertSecsToMinsHours(bleep.intervalInSeconds)
-        let bleepText = """
-            \(bleep.content) - every \(hours >= 1
-                ? "\(hours.formatted()) hour\(hours > 1 ? "s" : "")"
-                : "\(mins.formatted()) min\(mins > 1 ? "s" : "")")
-        """
-        
         HStack{
-            Text("\(bleepText)").padding(.leading, -12)
+            Text("\(bleep.content)")
             Spacer()
             Toggle("", isOn: $bleep.isActive)
                 .toggleStyle(.switch)
@@ -32,6 +25,6 @@ struct BleepView_Previews: PreviewProvider {
     static let modelData = ModelData()
     
     static var previews: some View {
-        BleepView(bleep: modelData.bleeps[0])
+        BleepView(bleep: modelData.allBleeps[60]![0])
     }
 }

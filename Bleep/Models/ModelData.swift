@@ -6,15 +6,10 @@
 //
 
 import Foundation
+import OrderedCollections
 
 final class ModelData: ObservableObject {
-    @Published var bleeps: [Bleep] = [
-        Bleep(content: "Stop slouching", intervalInSeconds: 60),
-        Bleep(content: "Eye drops", intervalInSeconds: 300),
-        Bleep(content: "Drink water", intervalInSeconds: 1800),
-        Bleep(content: "Stand up", intervalInSeconds: 3600),
-        Bleep(content: "Take a walk", intervalInSeconds: 7200)
-    ]
+    @Published var allBleeps: OrderedDictionary<Double, [Bleep]> = [:]
     @Published var isAllActive: Bool = true {
         didSet {
             if isAllActive {
@@ -24,37 +19,46 @@ final class ModelData: ObservableObject {
             }
         }
     }
+    
     var intervalOptionsInSecs: [Double] = [
         60, 120, 300, 600, 900, 1800, 3600, 7200, 10800, 18000
     ]
     
-    func addNewBleep(content: String, intervalInSeconds: Double) {
-        let newBleep = Bleep(content: content, intervalInSeconds: intervalInSeconds)
-        bleeps.append(newBleep)
-        sortBleeps()
+    init() {
+        allBleeps = intervalOptionsInSecs.reduce(into: [:]) { acc, curr in
+            acc[curr] = []
+        }
+        
+        // For preview. Delete this.
+        allBleeps[60] = [Bleep(content: "Hello", intervalInSeconds: 60), Bleep(content: "Do something", intervalInSeconds: 60)]
+        allBleeps[300] = [Bleep(content: "Stand up", intervalInSeconds: 300)]
+        allBleeps[900] = [Bleep(content: "Blah", intervalInSeconds: 900), Bleep(content: "Blahblah", intervalInSeconds: 900)]
     }
     
-    func removeBleep(id: UUID) {
-        bleeps = bleeps.filter {
+    func addNewBleep(content: String, intervalInSeconds: Double) {
+        let newBleep = Bleep(content: content, intervalInSeconds: intervalInSeconds)
+        allBleeps[intervalInSeconds]?.append(newBleep)
+    }
+    
+    func removeBleep(interval: Double, id: UUID) {
+        allBleeps[interval] = allBleeps[interval]!.filter {
             $0.id != id
         }
     }
     
-    func sortBleeps() {
-        bleeps.sort {
-            $0.intervalInSeconds < $1.intervalInSeconds
-        }
-    }
-    
     func activateAll() {
-        for bleep in bleeps {
-            bleep.activate()
+        for (_, bleeps) in allBleeps {
+            for bleep in bleeps {
+                bleep.activate()
+            }
         }
     }
     
     func deactivateAll() {
-        for bleep in bleeps {
-            bleep.deactivate()
+        for (_, bleeps) in allBleeps {
+            for bleep in bleeps {
+                bleep.deactivate()
+            }
         }
     }
 }

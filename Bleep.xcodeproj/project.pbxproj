@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8327C1CF2A53042300B6D227 /* BleepsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327C1CE2A53042300B6D227 /* BleepsContainerView.swift */; };
+		8327C1D22A5324A500B6D227 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 8327C1D12A5324A500B6D227 /* OrderedCollections */; };
 		8354499C2A161597001BCDFE /* SystemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8354499B2A161597001BCDFE /* SystemService.swift */; };
 		836C4ECB2A166A99002D9806 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 836C4ECA2A166A99002D9806 /* README.md */; };
 		83A1D0082A14E1E200A49804 /* BleepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D0072A14E1E200A49804 /* BleepApp.swift */; };
@@ -16,7 +18,7 @@
 		83A1D01A2A14E1E300A49804 /* BleepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D0192A14E1E300A49804 /* BleepTests.swift */; };
 		83A1D0242A14E1E300A49804 /* BleepUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D0232A14E1E300A49804 /* BleepUITests.swift */; };
 		83A1D0262A14E1E300A49804 /* BleepUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D0252A14E1E300A49804 /* BleepUITestsLaunchTests.swift */; };
-		83A1D0332A14E9BA00A49804 /* BleepsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D0322A14E9BA00A49804 /* BleepsListView.swift */; };
+		83A1D0332A14E9BA00A49804 /* BleepsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D0322A14E9BA00A49804 /* BleepsSectionView.swift */; };
 		83A1D0382A150B6F00A49804 /* Bleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D0372A150B6F00A49804 /* Bleep.swift */; };
 		83A1D03D2A15131600A49804 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D03C2A15131600A49804 /* ModelData.swift */; };
 		83A1D0402A15183400A49804 /* BleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1D03F2A15183400A49804 /* BleepView.swift */; };
@@ -42,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8327C1CE2A53042300B6D227 /* BleepsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleepsContainerView.swift; sourceTree = "<group>"; };
 		8354499B2A161597001BCDFE /* SystemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemService.swift; sourceTree = "<group>"; };
 		836C4ECA2A166A99002D9806 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		838A691E2A16A8D800710891 /* Bleep.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bleep.entitlements; sourceTree = "<group>"; };
@@ -55,7 +58,7 @@
 		83A1D01F2A14E1E300A49804 /* BleepUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BleepUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A1D0232A14E1E300A49804 /* BleepUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleepUITests.swift; sourceTree = "<group>"; };
 		83A1D0252A14E1E300A49804 /* BleepUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleepUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		83A1D0322A14E9BA00A49804 /* BleepsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleepsListView.swift; sourceTree = "<group>"; };
+		83A1D0322A14E9BA00A49804 /* BleepsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleepsSectionView.swift; sourceTree = "<group>"; };
 		83A1D0372A150B6F00A49804 /* Bleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bleep.swift; sourceTree = "<group>"; };
 		83A1D03C2A15131600A49804 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		83A1D03F2A15183400A49804 /* BleepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleepView.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8327C1D22A5324A500B6D227 /* OrderedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,9 +174,10 @@
 			isa = PBXGroup;
 			children = (
 				83A1D0092A14E1E200A49804 /* ContentView.swift */,
-				83A1D0322A14E9BA00A49804 /* BleepsListView.swift */,
+				83A1D0322A14E9BA00A49804 /* BleepsSectionView.swift */,
 				83A1D03F2A15183400A49804 /* BleepView.swift */,
 				83A1D0412A1525DB00A49804 /* BleepFormView.swift */,
+				8327C1CE2A53042300B6D227 /* BleepsContainerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,6 +206,9 @@
 			dependencies = (
 			);
 			name = Bleep;
+			packageProductDependencies = (
+				8327C1D12A5324A500B6D227 /* OrderedCollections */,
+			);
 			productName = Bleep;
 			productReference = 83A1D0042A14E1E200A49804 /* Bleep.app */;
 			productType = "com.apple.product-type.application";
@@ -273,6 +281,9 @@
 				Base,
 			);
 			mainGroup = 83A1CFFB2A14E1E200A49804;
+			packageReferences = (
+				8327C1D02A5324A500B6D227 /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			productRefGroup = 83A1D0052A14E1E200A49804 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -318,9 +329,10 @@
 			files = (
 				8354499C2A161597001BCDFE /* SystemService.swift in Sources */,
 				83A1D0382A150B6F00A49804 /* Bleep.swift in Sources */,
-				83A1D0332A14E9BA00A49804 /* BleepsListView.swift in Sources */,
+				83A1D0332A14E9BA00A49804 /* BleepsSectionView.swift in Sources */,
 				83A1D00A2A14E1E200A49804 /* ContentView.swift in Sources */,
 				83A1D0422A1525DB00A49804 /* BleepFormView.swift in Sources */,
+				8327C1CF2A53042300B6D227 /* BleepsContainerView.swift in Sources */,
 				83A1D0402A15183400A49804 /* BleepView.swift in Sources */,
 				83A1D0082A14E1E200A49804 /* BleepApp.swift in Sources */,
 				83A1D0472A15456500A49804 /* index.swift in Sources */,
@@ -636,6 +648,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8327C1D02A5324A500B6D227 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8327C1D12A5324A500B6D227 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8327C1D02A5324A500B6D227 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83A1CFFC2A14E1E200A49804 /* Project object */;
 }

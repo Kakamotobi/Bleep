@@ -13,3 +13,13 @@ func convertSecsToMinsHours(_ secs: Double) -> (Double,Double) {
     
     return (hours, mins)
 }
+
+func correspondingTimeUnit(_ secs: Double) -> String {
+    let (hours, mins) = convertSecsToMinsHours(secs)
+    
+    return """
+        \(hours >= 1
+            ? "\(hours.formatted()) hour\(hours > 1 ? "s" : "")"
+            : "\(mins.formatted()) minute\(mins > 1 ? "s" : "")")
+    """
+}
