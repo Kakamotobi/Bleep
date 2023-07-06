@@ -27,9 +27,9 @@ struct BleepFormView: View {
                         Text(correspondingTimeUnit(interval)).tag(interval)
                     }
                 }
-                    .frame(width: 90)
-                    .padding(.leading, -5)
-                    .pickerStyle(.menu)
+                .frame(width: 90)
+                .padding(.leading, -5)
+                .pickerStyle(.menu)
 
                 Button("Add") {
                     submitHandler(content: newBleepContent, intervalInSeconds: newBleepInterval)

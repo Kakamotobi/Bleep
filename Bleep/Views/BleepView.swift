@@ -8,12 +8,32 @@
 import SwiftUI
 
 struct BleepView: View {
+    @EnvironmentObject var modelData: ModelData
     @ObservedObject var bleep: Bleep // change to @Binding to allow editting the bleep
+    @State var isHovered: Bool = false
     
     var body: some View {
-        HStack{
-            Text("\(bleep.content)")
-            Spacer()
+        HStack {
+            HStack {
+                Text("\(bleep.content)")
+                    .frame(maxWidth: 180, alignment: .leading)
+                
+                Spacer()
+                
+                if isHovered {
+                    Button("🗑️") {
+                        modelData.removeBleep(bleep)
+                    }
+                    .buttonStyle(.plain)
+                    .opacity(isHovered ? 1.0 : 0.0)
+                }
+            }
+            .onHover { over in
+                withAnimation(.easeInOut(duration: 0.25)) {
+                    isHovered = over
+                }
+            }
+            
             Toggle("", isOn: $bleep.isActive)
                 .toggleStyle(.switch)
                 .tint(.blue)

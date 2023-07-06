@@ -40,9 +40,11 @@ final class ModelData: ObservableObject {
         allBleeps[intervalInSeconds]?.append(newBleep)
     }
     
-    func removeBleep(interval: Double, id: UUID) {
-        allBleeps[interval] = allBleeps[interval]!.filter {
-            $0.id != id
+    func removeBleep(_ bleep: Bleep) {
+        bleep.stopBleepInterval()
+        
+        allBleeps[bleep.intervalInSeconds] = allBleeps[bleep.intervalInSeconds]!.filter {
+            $0.id != bleep.id
         }
     }
     
