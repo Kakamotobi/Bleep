@@ -27,18 +27,19 @@ struct BleepFormView: View {
                         Text(correspondingTimeUnit(interval)).tag(interval)
                     }
                 }
+                .pickerStyle(.menu)
                 .frame(width: 90)
                 .padding(.leading, -5)
-                .pickerStyle(.menu)
 
                 Button("Add") {
-                    submitHandler(content: newBleepContent, intervalInSeconds: newBleepInterval)
+                    submitNewBleep(content: newBleepContent, intervalInSeconds: newBleepInterval)
                     isFocused = false
                 }
+                .disabled(newBleepContent == "")
             }
         }
         .onSubmit {
-            submitHandler(content: newBleepContent, intervalInSeconds: newBleepInterval)
+            submitNewBleep(content: newBleepContent, intervalInSeconds: newBleepInterval)
             isFocused = false
         }
         .onAppear {
@@ -49,7 +50,7 @@ struct BleepFormView: View {
         .padding(.vertical, 2)
     }
 
-    func submitHandler(content: String, intervalInSeconds: Double) {
+    func submitNewBleep(content: String, intervalInSeconds: Double) {
         if content.isEmpty || intervalInSeconds == 0 {
             return
         }
